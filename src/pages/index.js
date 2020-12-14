@@ -1,109 +1,131 @@
-import * as React from "react"
-
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-const headingAccentStyles = {
-  color: "#663399",
-}
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-const listStyles = {
-  marginBottom: 96,
-  paddingLeft: 0,
-  listStyleType: "none",
-}
-const listItemStyles = {
-  marginBottom: 12,
-  fontWeight: "300",
-  letterSpacing: 1,
-}
-const linkStyles = {
-  color: "#8954A8",
-}
-
-// data
-const links = [
-  {
-    text: "Documentation",
-    url: "https://www.gatsbyjs.com/docs/",
-  },
-  {
-    text: "Tutorials",
-    url: "https://www.gatsbyjs.com/tutorial/",
-  },
-  {
-    text: "Guides",
-    url: "https://www.gatsbyjs.com/tutorial/",
-  },
-  {
-    text: "API Reference",
-    url: "https://www.gatsbyjs.com/docs/api-reference/",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-  },
-  {
-    text: "Cheat Sheet",
-    url: "https://www.gatsbyjs.com/docs/cheat-sheet/",
-  },
-]
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import Layout from "../components/layout";
 
 // markup
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  console.log({ data });
+  const [reasons, setReasons] = React.useState(
+    data.allMdx.edges.map(({ node }) => node)
+  );
+  console.log({ reasons });
+  const [selectedReason, setSelectedReason] = React.useState(reasons[0]);
+  const [showList, setShowList] = React.useState(false);
+  console.log({ selectedReason });
   return (
-    <main style={pageStyles}>
+    <Layout>
       <title>Home Page</title>
-      <h1 style={headingStyles}>
-        Congratulations
-        <br />
-        <span style={headingAccentStyles}>— you just made a Gatsby site!</span>
-        <span role="img" aria-label="Party popper emojis">
-          🎉🎉🎉
-        </span>
-      </h1>
-      <p style={paragraphStyles}>
-        Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
-        update in real-time.{" "}
-        <span role="img" aria-label="Sunglasses smiley emoji">
-          😎
-        </span>
-      </p>
-      <ul style={listStyles}>
-        {links.map(link => (
-          <li style={listItemStyles}>
-            <a
-              style={linkStyles}
-              href={`${link.url}?utm_source=starter&utm_medium=start-page&utm_campaign=minimal-starter`}
-            >
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <img
-        alt="Gatsby G Logo"
-        src="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C13.3132 2 14.6136 2.25866 15.8268 2.7612C17.0401 3.26375 18.1425 4.00035 19.0711 4.92893C19.9997 5.85752 20.7362 6.95991 21.2388 8.17317C21.7413 9.38642 22 10.6868 22 12C22 14.6522 20.9464 17.1957 19.0711 19.0711C17.1957 20.9464 14.6522 22 12 22C10.6868 22 9.38642 21.7413 8.17317 21.2388C6.95991 20.7362 5.85752 19.9997 4.92893 19.0711C3.05357 17.1957 2 14.6522 2 12C2 9.34784 3.05357 6.8043 4.92893 4.92893C6.8043 3.05357 9.34784 2 12 2ZM12 4C8.27 4 5.14 6.55 4.25 10L14 19.75C17.45 18.86 20 15.73 20 12H14.75V13.5H18.2C17.71 15.54 16.24 17.19 14.31 17.94L6.06 9.69C7 7.31 9.3 5.63 12 5.63C14.13 5.63 16 6.67 17.18 8.28L18.41 7.22C16.95 5.26 14.63 4 12 4ZM4 12C4 14.1217 4.84285 16.1566 6.34315 17.6569C7.84344 19.1571 9.87827 20 12 20C12.04 20 12.09 20 4 12Z' fill='%23663399'/%3E%3C/svg%3E%0A"
-      />
-    </main>
-  )
-}
+      <h1 className="text-8xl mb-2 font-medium">I can't run because ...</h1>
+      {/* <ul>
+  {reasons.map(a=><li key={a.id}>{a.frontmatter.title}</li>)}
+      </ul> */}
 
-export default IndexPage
+      <div>
+        {/* <label id="listbox-label" className="block text-sm font-medium text-gray-700">
+    Assigned to
+  </label> */}
+        <div className="mt-2 relative">
+          <button
+            onClick={() => setShowList(!showList)}
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="true"
+            aria-labelledby="listbox-label"
+            className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          >
+            <span className="flex items-center">
+              <span className="ml-3 block truncate">
+                {selectedReason.frontmatter.title}
+              </span>
+            </span>
+            <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+              <svg
+                className="h-5 w-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+
+          <div
+            className={`${
+              showList
+                ? "block opacity-100 transition ease-in duration-100"
+                : "hidden opacity-0"
+            } absolute mt-1 w-full rounded-md bg-white shadow-lg`}
+          >
+            <ul
+              tabIndex="-1"
+              role="listbox"
+              aria-labelledby="reasons list"
+              className="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+            >
+              {reasons.map((a) => (
+                <li
+                  key={a.id}
+                  onClick={() => {
+                    setShowList(false);
+                    setSelectedReason(a);
+                  }}
+                  role="option"
+                  className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:text-white hover:bg-purple-700"
+                >
+                  <div className="flex items-center">
+                    <span className="ml-3 block font-normal truncate">
+                      {a.frontmatter.title}
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2 className="mt-4 text-4xl">What about: </h2>
+      <p className="mt-4">
+        {selectedReason.excerpt}
+      </p>
+      <div className="mt-4">
+        <Link
+          to={`/reasons/${selectedReason.slug}/`}
+          className="py-2 px-4 bg-indigo-500 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none"
+        >
+          See more
+        </Link>
+      </div>
+    </Layout>
+  );
+};
+
+export default IndexPage;
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        description
+        title
+      }
+    }
+    allMdx(sort: {order: DESC, fields: frontmatter___title}){
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+          id
+          slug
+          excerpt(truncate: true)
+        }
+      }
+    }
+  }
+`;
