@@ -1,4 +1,4 @@
-# I cannot go put running
+# I cannot go out running
 
 ## What
 
