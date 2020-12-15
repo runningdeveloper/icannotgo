@@ -37,6 +37,14 @@ module.exports = {
       },
       __key: "data",
     },
-    'gatsby-plugin-postcss'
+    'gatsby-plugin-postcss',
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Russo One']
+        }
+      }
+    }
   ],
 };
