@@ -1,4 +1,10 @@
 module.exports = {
+  pathPrefix: "/icannotgo",
+  siteMetadata: {
+    title: `I can't run because`,
+    description: `Tool to help you find excuses for running.`,
+    siteUrl: `https://runningdeveloper.github.io/icannotgo/`,
+  },
   plugins: [
     {
       resolve: "gatsby-plugin-google-analytics",

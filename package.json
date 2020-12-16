@@ -8,6 +8,7 @@
     "gatsby"
   ],
   "scripts": {
+    "build-prefix": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
