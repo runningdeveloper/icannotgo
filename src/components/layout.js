@@ -8,7 +8,8 @@ const Layout = ({ children }) => {
         {children}
       </main>
       <footer className="container mx-auto px-4 max-w-screen-md font-display mt-5 mb-5 flex">
-        <Link to={`/about/`} className="text-orange-700 font-semibold mr-5">
+        <Link
+            to={`/about/`} className="text-orange-700 font-semibold mr-5">
           About
         </Link>
 
