@@ -12,7 +12,7 @@ const ShareLine = ({ children }) => {
               navigator.clipboard.writeText(`${children}`);
               setCopied(true);
             }}
-            className="py-2 px-4 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 focus:outline-none text-base"
+            className="py-2 px-4 bg-teal-700 text-white font-semibold rounded-lg shadow-md hover:bg-teal-800 text-base"
           >
             {copied ? "Copied to clipboard" : "Copy"}
           </button>{" "}
@@ -21,7 +21,7 @@ const ShareLine = ({ children }) => {
               typeof window !== `undefined` ? window.location.href : ""
             }&text=${encodeURIComponent(children)}&via=geoff4l`}
             style={{ appearance: "auto" }}
-            className="py-2 px-4 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 focus:outline-none text-base"
+            className="py-2 px-4 bg-teal-700 text-white font-semibold rounded-lg shadow-md hover:bg-teal-800 text-base"
           >
             Tweet
           </a>

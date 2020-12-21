@@ -7,7 +7,7 @@ const MyParagraph = props => (
 )
 const MyH1 = props => <p className="text-3xl text-center mb-6 mt-2" {...props} />
 
-const MyHref = props => <a className="text-orange-700 font-semibold" {...props} />
+const MyHref = props => <a className="text-orange-700 font-semibold hover:text-orange-600" {...props} />
 
 const components = {
   p: MyParagraph,

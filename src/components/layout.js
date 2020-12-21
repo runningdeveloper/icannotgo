@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
       </main>
       <footer className="container mx-auto px-4 max-w-screen-md font-display mt-5 mb-5 flex">
         <Link
-            to={`/about/`} className="text-orange-700 font-semibold mr-5">
+            to={`/about/`} className="text-orange-700 font-semibold mr-5 hover:text-orange-600">
           About
         </Link>
 
@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
         </span>
         <a
           href="https://www.gatsbyjs.com"
-          className="text-orange-700 font-semibold"
+          className="text-orange-700 font-semibold hover:text-orange-600"
         >
           Built with Gatsby
         </a>

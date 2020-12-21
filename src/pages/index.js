@@ -9,6 +9,15 @@ const IndexPage = ({ data }) => {
   const reasons = data.allMdx.edges.map(({ node }) => node);
   const [selectedReason, setSelectedReason] = React.useState(null);
   const [showList, setShowList] = React.useState(false);
+  // const editFieldRef = React.useRef(null);
+  // React.useEffect(() => {
+  //   if (showList) {
+  //     console.log({...editFieldRef.current.children})
+  //     editFieldRef.current.children[0].focus();
+  //   }
+  // }, [showList]);
+
+  
   return (
     <Layout>
       <SEO />
@@ -20,9 +29,9 @@ const IndexPage = ({ data }) => {
           <button
             onClick={() => setShowList(!showList)}
             type="button"
-            aria-haspopup="listbox"
-            aria-expanded="true"
-            aria-labelledby="listbox-label"
+            aria-haspopup="true"
+            aria-expanded={showList}
+            aria-label="reasons dropdown list"
             className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
           >
             <span className="flex items-center">
@@ -54,19 +63,28 @@ const IndexPage = ({ data }) => {
                 : "hidden opacity-0"
             } absolute mt-1 w-full rounded-md bg-white shadow-lg`}
             role="listbox"
-            aria-labelledby="reasons list"
+            aria-label="reasons list"
+            aria-owns="reason-listbox"
           >
             <ul
-              tabIndex="-1"
-              className="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+            // ref={editFieldRef}
+              id="reason-listbox"
+              className="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto sm:text-sm"
             >
               {reasons.map((a) => (
                 <li key={a.id}>
                   <div
-                    tabIndex="-1"
-                    className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:text-white hover:bg-orange-700"
+                    className={`cursor-default select-none relative py-2 pl-3 pr-9 hover:text-white hover:bg-orange-700 ${
+                      a.id === selectedReason?.id
+                        ? `text-white hover bg-orange-700`
+                        : `text-gray-900`
+                    }`}
                     role="option"
-                    aria-selected={a.id === selectedReason?.id}
+                    aria-selected={
+                      selectedReason && a.id === selectedReason.id
+                        ? true
+                        : false
+                    }
                     onKeyDown={() => {
                       setShowList(false);
                       setSelectedReason(a);
@@ -110,7 +128,7 @@ const IndexPage = ({ data }) => {
           <div className="mt-5">
             <Link
               to={`/reasons/${selectedReason.slug}/`}
-              className="py-2 px-4 bg-orange-400 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none"
+              className="py-2 px-4 bg-orange-500 font-semibold rounded-lg shadow-md hover:bg-orange-700 hover:text-white"
             >
               Go to page
             </Link>

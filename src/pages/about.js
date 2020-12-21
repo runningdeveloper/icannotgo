@@ -55,7 +55,7 @@ export default function About() {
       <div className="mt-5">
         <Link
           to={`/`}
-          className="py-2 px-4 bg-orange-400 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none"
+          className="py-2 px-4 bg-orange-500 font-semibold rounded-lg shadow-md hover:bg-orange-700 hover:text-white"
         >
           Go Home
         </Link>
