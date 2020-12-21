@@ -2,29 +2,21 @@ import * as React from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/layout";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import SEO from "../components/seo";
+import ShoeHeader from "../components/shoe-header";
 
-// markup
 const IndexPage = ({ data }) => {
-  console.log({ data });
   const reasons = data.allMdx.edges.map(({ node }) => node);
-  console.log({ reasons });
   const [selectedReason, setSelectedReason] = React.useState(null);
   const [showList, setShowList] = React.useState(false);
-  const [showDetail, setShowDetail] = React.useState(false);
-
   return (
     <Layout>
-      <title>Home Page</title>
-      <h1 className="text-8xl mb-2 font-medium">I can't run because </h1>
-      {/* <ul>
-  {reasons.map(a=><li key={a.id}>{a.frontmatter.title}</li>)}
-      </ul> */}
+      <SEO />
 
-      <div>
-        {/* <label id="listbox-label" className="block text-sm font-medium text-gray-700">
-    Assigned to
-  </label> */}
-        <div className="mt-2 relative max-w-md">
+      <ShoeHeader headingText="I can't run because " large={true} />
+
+      <div className="flex justify-center">
+        <div className="mt-2 relative max-w-md w-1/3">
           <button
             onClick={() => setShowList(!showList)}
             type="button"
@@ -35,7 +27,7 @@ const IndexPage = ({ data }) => {
           >
             <span className="flex items-center">
               <span className="ml-3 block truncate">
-                {selectedReason?selectedReason.frontmatter.title:"..."}
+                {selectedReason ? selectedReason.frontmatter.title : "..."}
               </span>
             </span>
             <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -71,7 +63,7 @@ const IndexPage = ({ data }) => {
               {reasons.map((a) => (
                 <li key={a.id}>
                   <div
-                  tabIndex="-1"
+                    tabIndex="-1"
                     className="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:text-white hover:bg-orange-700"
                     role="option"
                     aria-selected={a.id === selectedReason?.id}
@@ -97,31 +89,24 @@ const IndexPage = ({ data }) => {
 
       {!selectedReason && (
         <>
-          <div className="mt-4">
-            <h2 className="mt-4 text-4xl">Got excuses? Find some solutions.</h2>
+          <div className="mt-8 text-center">
+            <h2 className="mt-4 text-4xl">We have excuses!</h2>
             <p className="mt-4 text-2xl">
-              Then send the solution to yourself or a friend.
+              Find some alternatives and get out there
             </p>
           </div>
-          {/* <div className="mt-4">
-            <button
-              onClick={() => setShowDetail(true)}
-              className="py-2 px-4 bg-orange-400 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none"
-            >
-              Show
-            </button>
-          </div> */}
         </>
       )}
 
       {selectedReason && (
         <>
-          {/* <p className="mt-4">
-        {selectedReason.excerpt}
-      </p> */}
           <div className="mt-4">
             <MDXRenderer>{selectedReason.body}</MDXRenderer>
           </div>
+          <p className="mt-4 text-sm">
+            Want to send link this reason to a friend, go to the page with a
+            single reason.
+          </p>
           <div className="mt-5">
             <Link
               to={`/reasons/${selectedReason.slug}/`}
@@ -144,6 +129,14 @@ export const query = graphql`
       siteMetadata {
         description
         title
+      }
+    }
+    file(relativePath: { eq: "shoe1.png" }) {
+      childImageSharp {
+        # Specify the image processing specifications right in the query.
+        fixed(width: 200) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
     allMdx(sort: { order: DESC, fields: frontmatter___title }) {

@@ -1,29 +1,33 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
 import Layout from "../../components/layout";
-import { MDXRenderer } from "gatsby-plugin-mdx"
-
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import SEO from "../../components/seo";
+import ShoeHeader from "../../components/shoe-header";
 
 export default function Reason({ data }) {
   console.log({ data });
   return (
     <Layout>
-      <title>{data.mdx.frontmatter.title}</title>
+      <SEO
+        title={data.mdx.frontmatter.title}
+        description={`I can't run because ${data.mdx.frontmatter.title}`}
+      />
 
-      <h1 className="text-8xl">
-        I can't run because {data.mdx.frontmatter.title}
-      </h1>
-    
-        <div className="mt-4">
-      <MDXRenderer>{data.mdx.body}</MDXRenderer>
+      <ShoeHeader
+        headingText={`I can't run because ${data.mdx.frontmatter.title}`}
+      />
+
+      <div className="mt-4">
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </div>
+
       <div className="mt-5">
-        
         <Link
           to={`/`}
           className="py-2 px-4 bg-orange-400 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none"
         >
-          Back Home
+          Go Home
         </Link>
       </div>
     </Layout>
