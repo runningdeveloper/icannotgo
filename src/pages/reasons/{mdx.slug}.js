@@ -6,7 +6,6 @@ import SEO from "../../components/seo";
 import ShoeHeader from "../../components/shoe-header";
 
 export default function Reason({ data }) {
-  console.log({ data });
   return (
     <Layout>
       <SEO

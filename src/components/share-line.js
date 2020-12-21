@@ -14,7 +14,7 @@ const ShareLine = ({ children }) => {
           </button>{" "}
           <a
             href={`https://twitter.com/share?url=${
-              window.location.href
+              typeof window !== `undefined` ? window.location.href : ""
             }&text=${encodeURIComponent(children)}&via=geoff4l`}
             className="py-2 px-4 bg-teal-500 text-white font-semibold rounded-lg shadow-md hover:bg-teal-700 focus:outline-none"
           >
