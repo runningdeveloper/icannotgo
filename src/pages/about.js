@@ -35,6 +35,8 @@ export default function About() {
 
         <p>Done by:</p>
         <a
+          target="_blank"
+          rel="noreferrer"
           href="https://twitter.com/geoff4l"
           className="text-orange-700 font-semibold"
         >
@@ -45,6 +47,8 @@ export default function About() {
           Why not contribute some more ideas and excuses, source on Github:
         </p>
         <a
+          target="_blank"
+          rel="noreferrer"
           href="https://github.com/runningdeveloper/icannotgo"
           className="text-orange-700 font-semibold"
         >

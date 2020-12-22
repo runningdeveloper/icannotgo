@@ -4,31 +4,25 @@ import Layout from "../components/layout";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import SEO from "../components/seo";
 import ShoeHeader from "../components/shoe-header";
-import Listbox from "../components/listbox";
+import ReasonListbox from "../components/reason-listbox";
 
 const IndexPage = ({ data }) => {
   const reasons = data.allMdx.edges.map(({ node }) => node);
   const [selectedReason, setSelectedReason] = React.useState(null);
-  const [showList, setShowList] = React.useState(false);
-  // const editFieldRef = React.useRef(null);
-  // React.useEffect(() => {
-  //   if (showList) {
-  //     console.log({...editFieldRef.current.children})
-  //     editFieldRef.current.children[0].focus();
-  //   }
-  // }, [showList]);
 
   return (
     <Layout>
       <SEO />
 
       <ShoeHeader headingText="I can't run because " large={true} />
+
       <div className="flex justify-center">
-        <Listbox
+        <ReasonListbox
           options={reasons}
           onSelected={(option) => setSelectedReason(option)}
         />
       </div>
+
 
       {!selectedReason && (
         <>
