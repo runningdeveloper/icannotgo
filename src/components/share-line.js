@@ -17,9 +17,11 @@ const ShareLine = ({ children }) => {
             {copied ? "Copied to clipboard" : "Copy"}
           </button>{" "}
           <a
+            target="_blank"
+            rel="noreferrer"
             href={`https://twitter.com/share?url=${
               typeof window !== `undefined` ? window.location.href : ""
-            }&text=${encodeURIComponent(children)}&via=geoff4l`}
+            }&text=${encodeURIComponent(children)}`}
             style={{ appearance: "auto" }}
             className="py-2 px-4 bg-teal-700 text-white font-semibold rounded-lg shadow-md hover:bg-teal-800 text-base"
           >
