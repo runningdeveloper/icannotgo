@@ -1,7 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx,mdx}'],
+  purge: ['./src/**/*.{js,jsx,ts,tsx,mdx}','./gatsby-browser.js'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {

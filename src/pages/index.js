@@ -23,7 +23,6 @@ const IndexPage = ({ data }) => {
         />
       </div>
 
-
       {!selectedReason && (
         <>
           <div className="mt-8 text-center">

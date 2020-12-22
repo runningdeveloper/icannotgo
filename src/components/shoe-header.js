@@ -21,7 +21,11 @@ const ShoeHeader = ({ headingText, large = false }) => {
       <div className="flex justify-center mt-6 mb-8 animate-wiggle">
         <Img fixed={data.file.childImageSharp.fixed} alt="A running shoe" />
       </div>
-      <h1 className={`${large ? `text-7xl sm:text-8xl` : `text-7xl`} mb-2 text-center`}>
+      <h1
+        className={`${
+          large ? `text-7xl sm:text-8xl` : `text-7xl`
+        } mb-2 text-center`}
+      >
         {headingText}
       </h1>
     </>

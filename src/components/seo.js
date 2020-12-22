@@ -28,7 +28,7 @@ const SEO = ({ title, description, image, article }) => {
     <Helmet title={seo.title} titleTemplate={titleTemplate}>
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image} />
-      <html lang="en"/>
+      <html lang="en" />
       <link
         rel="apple-touch-icon"
         sizes="180x180"
